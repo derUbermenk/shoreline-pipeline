@@ -28,7 +28,7 @@ def test_initializeTideGrabber(mocker):
     startDate = "20240101"
     endDate = "20240131"
     saveDir = "path/to/saveDir/"
-    expected_savePath = "{saveDir}{startDate_endDate}.csv"
+    expected_savePath = f"{saveDir}{startDate}_{endDate}.csv"
 
     args = [startDate, endDate, saveDir]
 
@@ -40,4 +40,19 @@ def test_initializeTideGrabber(mocker):
 
     assert tide_grabber.startDate == startDate
     assert tide_grabber.endDate == endDate
-    assert tide_grabber.save_path == expected_savePath 
+    assert tide_grabber.savePath == expected_savePath 
+
+    # set 2: even when save dir is lacking a trailing /
+    startDate = "20240101"
+    endDate = "20240131"
+    saveDir = "path/to/saveDir"
+    expected_savePath = f"{saveDir}/{startDate}_{endDate}.csv"
+
+    args = [startDate, endDate, saveDir]
+
+    tide_grabber =  initializeTideGrabber(args)
+    assert isinstance(tide_grabber, TideGrabber)
+
+    assert tide_grabber.startDate == startDate
+    assert tide_grabber.endDate == endDate
+    assert tide_grabber.savePath == expected_savePath 

@@ -6,8 +6,28 @@ import os
 import sys
 
 class TideGrabber():
-    def __init__(self):
+    def __init__(self, startDate: str, endDate: str, saveDir: str):
+        """Initializes a tide grabber object
+
+        Parameters
+        ----------
+        startDate: str
+            yyyymmdd
+        endDate: str
+            yyyymmdd
+        saveDir: str
+            yyyymmdd
+        """
+        self.startDate = startDate
+        self.endDate = endDate
+        self.saveDir = saveDir.rstrip('/')
+
+        self.savePath = self.formatSavePath()
         return
+
+    def formatSavePath(self):
+        return os.path.join(self.saveDir, f"{self.startDate}_{self.endDate}.csv")
+
 
     def run(self):    
         return
@@ -22,7 +42,7 @@ def checkDirExists(path: str):
     path: str
         path to directory 
     """
-    if os.path.exists(path):
+    if os.path.exists(path) and os.path.isdir(path):
         return
     else:
         sys.exit(1)
@@ -44,7 +64,7 @@ def initializeTideGrabber(args) -> TideGrabber:
 
     args_ = parser.parse_args(args)
 
-    checkDirExists(args.saveDir)
+    checkDirExists(args_.saveDir)
 
-    tide_grabber = TideGrabber(args.startdate, args.enddate, args.saveDir)
+    tide_grabber = TideGrabber(args_.startdate, args_.enddate, args_.saveDir)
     return tide_grabber
