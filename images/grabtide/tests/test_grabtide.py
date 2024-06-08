@@ -2,6 +2,13 @@ from grabtide import TideGrabber, checkDirExists, initializeTideGrabber
 import tempfile
 
 def test_checkDirExists(mocker):    
+    """
+        Test grabtide.checkDirExists 
+
+        pass conditions:
+            function exits with code 1 on non existent path 
+            does not exit when given directory exists 
+    """
     temp_path = tempfile.TemporaryDirectory()
     nonExistentFilePath = "/non/existent/path/"
     existentFilePath = temp_path.name
@@ -25,6 +32,7 @@ def test_checkDirExists(mocker):
 
 
 def test_initializeTideGrabber(mocker):
+    """test initializeTideGrabber"""
     startDate = "20240101"
     endDate = "20240131"
     saveDir = "path/to/saveDir/"
