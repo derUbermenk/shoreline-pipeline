@@ -28,6 +28,28 @@ class TideGrabber():
     def formatSavePath(self):
         return os.path.join(self.saveDir, f"{self.startDate}_{self.endDate}.csv")
 
+    def request(self):
+        url = 'https://tidesandcurrents.noaa.gov/api/datagetter' 
+        params = {
+            'product': 'predictions',
+            'application': 'NOS.COOPS.TAC.WL',
+            'begin_date': '20240608',
+            'end_date': '20240609',
+            'datum': 'MSL',
+            'station': '1631428',
+            'time_zone': 'GMT',
+            'units': 'metric',
+            'interval': '6',
+            'format': 'csv'
+        }
+
+        response = requests.get(url, params)
+
+        if response.status_code == 200:
+            return response.content
+        else:
+            print(f'Failed to retrieve data: {response.status_code}')
+            sys.exit(1)
 
     def run(self):    
         return
