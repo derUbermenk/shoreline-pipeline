@@ -3,7 +3,7 @@
 import argparse
 import requests
 
-class GrabTide():
+class TideGrabber():
     def __init__():
         return
 
