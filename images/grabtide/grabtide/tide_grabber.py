@@ -2,6 +2,8 @@
 
 import argparse
 import requests
+import os
+import sys
 
 class TideGrabber():
     def __init__(self):
@@ -9,6 +11,21 @@ class TideGrabber():
 
     def run(self):    
         return
+
+def checkDirExists(path: str):
+    """Checks if save directory exists 
+
+    checks if the dir in the given path exists. exists the program if it doesnt
+
+    Paremeters:
+    ----------
+    path: str
+        path to directory 
+    """
+    if os.path.exists(path):
+        return
+    else:
+        sys.exit(1)
     
 def initializeTideGrabber(args) -> TideGrabber:
     parser = argparse.ArgumentParser(
@@ -27,10 +44,7 @@ def initializeTideGrabber(args) -> TideGrabber:
 
     args_ = parser.parse_args(args)
 
-    checkSaveDir(args.saveDir)
+    checkDirExists(args.saveDir)
 
     tide_grabber = TideGrabber(args.startdate, args.enddate, args.saveDir)
     return tide_grabber
-
-
-    return 
