@@ -82,8 +82,8 @@ def test_TideGrabber_request_sucess():
     correct_params = {
         'product': 'predictions',
         'application': 'NOS.COOPS.TAC.WL',
-        'begin_date': '20240608',
-        'end_date': '20240609',
+        'begin_date': startDate,
+        'end_date': endDate,
         'datum': 'MSL',
         'station': '1631428',
         'time_zone': 'GMT',
@@ -125,8 +125,8 @@ def test_TideGrabber_request_unsucessful():
     correct_params = {
         'product': 'predictions',
         'application': 'NOS.COOPS.TAC.WL',
-        'begin_date': '20240608',
-        'end_date': '20240609',
+        'begin_date': startDate,
+        'end_date': endDate,
         'datum': 'MSL',
         'station': '1631428',
         'time_zone': 'GMT',
