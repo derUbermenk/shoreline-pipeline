@@ -33,8 +33,8 @@ class TideGrabber():
         params = {
             'product': 'predictions',
             'application': 'NOS.COOPS.TAC.WL',
-            'begin_date': '20240608',
-            'end_date': '20240609',
+            'begin_date': self.startDate,
+            'end_date': self.endDate,
             'datum': 'MSL',
             'station': '1631428',
             'time_zone': 'GMT',
