@@ -231,7 +231,7 @@ def test_integration_TideGrabber_run():
     tide_grabber = TideGrabber(startDate, endDate, saveDir)
 
     expected_savePath = os.path.join(saveDir, f"{startDate}_{endDate}.csv")
-    expected_columns = ["Date Time", "Prediction"]
+    expected_columns = ["DateTime", " Prediction"]
 
 
     tide_grabber.run()
