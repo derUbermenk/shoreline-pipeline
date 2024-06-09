@@ -63,7 +63,8 @@ class TideGrabber():
             file.write(content)
 
     def run(self):    
-        return
+        response_content = self.request()
+        self.saveResponse(response_content)
 
 def checkDirExists(path: str):
     """Checks if save directory exists 
