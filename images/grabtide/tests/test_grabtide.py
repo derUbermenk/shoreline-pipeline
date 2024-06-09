@@ -3,6 +3,7 @@ import tempfile
 from unittest.mock import Mock, patch
 from requests import Response
 import os
+import csv
 
 def test_checkDirExists(mocker):    
     """
@@ -192,10 +193,42 @@ def test_TideGrabber_saveResponse():
         contents = f.read()
         assert contents == new_data 
 
-def test_TideGrabber_run():
-    """Test behaviour of TideGrabber.run()
+def test_integration_TideGrabber_run():
+    """integration test for behaviour of TideGrabber.run()
 
     expect function to save the content of response to correct file path
+    after querying to correct path
+
+    basically an integration test for TideGrabber.request and TideGrabber.saveResponse
     """
 
-    pass
+    tmp_dir = tempfile.TemporaryDirectory()
+
+    startDate = "20240101"
+    endDate = "20240131"
+    saveDir = tmp_dir.name 
+
+    tide_grabber = TideGrabber(startDate, endDate, saveDir)
+
+    expected_savePath = os.path.join(saveDir, f"{startDate}_{endDate}.csv")
+    expected_columns = ["Date Time", "Prediction"]
+
+
+    tide_grabber.run()
+
+    assert os.path.exists(expected_savePath)
+    assert os.path.isfile(expected_savePath)
+    with open(expected_savePath, mode='r', newline='', encoding='utf-8') as output:
+        output = csv.reader(output)
+        rows = list(output)
+
+        # assert that we get the correct headers  
+        assert rows[0] == expected_columns
+        
+        # assert that the first Date time is whats expected
+        assert rows[1][0] == "2024-01-01 00:00"
+        assert rows[-1][0] == "2024-01-31 23:54"
+
+    
+
+
