@@ -51,6 +51,17 @@ class TideGrabber():
             print(f'Failed to retrieve data: {response.status_code}')
             sys.exit(1)
 
+    def saveResponse(self, content: bytes):
+        """
+        saves a given content to a csv file defined by self.savePath
+
+        Parameters
+        ----------
+        content: bytes
+        """
+        with open(self.savePath, 'wb') as file:
+            file.write(content)
+
     def run(self):    
         return
 
