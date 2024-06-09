@@ -141,22 +141,20 @@ def test_TideGrabber_request_unsucessful():
     unsuccessful_response = Mock() 
     unsuccessful_response.status_code = 404
 
-    mock_get = patch("requests.get", return_value=unsuccessful_response).start()
-    mock_print = patch("builtins.print").start()
- 
+    with patch("requests.get", return_value=unsuccessful_response) as mock_get:
+        with patch("builtins.print") as mock_print:
+            response_content = None
+            try:
+                response_content = tide_grabber.request()
+            except SystemExit as e:
+                assert True 
+                assert e.code == 1
+            else:
+                assert False, "unsuccessful request did not exit when expected to have"
 
-    response_content = None
-    try:
-        response_content = tide_grabber.request()
-    except SystemExit as e:
-        assert True 
-        assert e.code == 1
-    else:
-        assert False, "unsuccessful request did not exit when expected to have"
-
-    mock_get.assert_called_once_with(correct_url, correct_params)
-    mock_print.assert_called_once_with(f'Failed to retrieve data: 404')
-    assert response_content == None
+            mock_get.assert_called_once_with(correct_url, correct_params)
+            mock_print.assert_called_once_with(f'Failed to retrieve data: 404')
+            assert response_content == None
 
 def test_TideGrabber_saveResponse():
     """test the behavour of TideGrabber.saveResponse
@@ -204,14 +202,13 @@ def test_TideGrabber_run():
     saveDir = "path/to/saveDir"
 
     mock_content = b'content'
-    mock_request = patch('grabtide.TideGrabber.request', return_value=mock_content).start()
-    mock_saveResponse = patch('grabtide.TideGrabber.saveResponse').start()
+    with patch('grabtide.TideGrabber.request', return_value=mock_content) as mock_request:
+        with patch('grabtide.TideGrabber.saveResponse') as mock_saveResponse:
+            tide_grabber = TideGrabber(startDate, endDate, saveDir)
+            tide_grabber.run()
 
-    tide_grabber = TideGrabber(startDate, endDate, saveDir)
-    tide_grabber.run()
-
-    mock_request.assert_called_once() 
-    mock_saveResponse.assert_called_once_with(mock_content)
+            mock_request.assert_called_once() 
+            mock_saveResponse.assert_called_once_with(mock_content)
 
 def test_integration_TideGrabber_run():
     """integration test for behaviour of TideGrabber.run()
