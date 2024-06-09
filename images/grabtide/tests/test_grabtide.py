@@ -184,15 +184,13 @@ def test_TideGrabber_saveResponse():
         contents = f.read()
         assert contents == initial_data
 
-    # it saves a new file in given dir 
+    # it overwrites an old file if it already exists
     tide_grabber.saveResponse(new_data)
     assert os.path.exists(expected_savePath)
     assert os.path.isfile(expected_savePath)
     with open(expected_savePath, 'rb') as f:
         contents = f.read()
         assert contents == new_data 
-
-    # it overwrites an old file if it already exists
 
 def test_TideGrabber_run():
     """Test behaviour of TideGrabber.run()
