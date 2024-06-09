@@ -193,6 +193,26 @@ def test_TideGrabber_saveResponse():
         contents = f.read()
         assert contents == new_data 
 
+def test_TideGrabber_run():
+    """unit test for tideGrabber.run()
+    
+    assert if it calls the necessary functions
+    """
+
+    startDate = "20240101"
+    endDate = "20240131"
+    saveDir = "path/to/saveDir"
+
+    mock_content = b'content'
+    mock_request = patch('grabtide.TideGrabber.request', return_value=mock_content).start()
+    mock_saveResponse = patch('grabtide.TideGrabber.saveResponse').start()
+
+    tide_grabber = TideGrabber(startDate, endDate, saveDir)
+    tide_grabber.run()
+
+    mock_request.assert_called_once() 
+    mock_saveResponse.assert_called_once_with(mock_content)
+
 def test_integration_TideGrabber_run():
     """integration test for behaviour of TideGrabber.run()
 
