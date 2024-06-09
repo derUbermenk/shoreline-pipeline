@@ -2,6 +2,7 @@ from grabtide import TideGrabber, checkDirExists, initializeTideGrabber
 import tempfile
 from unittest.mock import Mock, patch
 from requests import Response
+import os
 
 def test_checkDirExists(mocker):    
     """
@@ -31,7 +32,6 @@ def test_checkDirExists(mocker):
         assert False
     else:
         assert True
-
 
 def test_initializeTideGrabber(mocker):
     """test initializeTideGrabber"""
@@ -109,7 +109,6 @@ def test_TideGrabber_request_sucess():
         mock_get.assert_called_once_with(correct_url, correct_params)
         assert isinstance(response_content, bytes)
 
-
 def test_TideGrabber_request_unsucessful():
     """Test the behaviour of of TideGrabber.request on fail 
 
@@ -157,6 +156,43 @@ def test_TideGrabber_request_unsucessful():
     mock_get.assert_called_once_with(correct_url, correct_params)
     mock_print.assert_called_once_with(f'Failed to retrieve data: 404')
     assert response_content == None
+
+def test_TideGrabber_saveResponse():
+    """test the behavour of TideGrabber.saveResponse
+    
+    expected behaviour:
+    saves a new file to savePath when nothing exists
+    overwrites any file with save same name when it exists
+    """
+    tmp_dir = tempfile.TemporaryDirectory()
+
+    startDate = "20240101"
+    endDate = "20240131"
+    saveDir = tmp_dir.name 
+    expected_savePath = os.path.join(saveDir, f"{startDate}_{endDate}.csv")
+
+    tide_grabber = TideGrabber(startDate, endDate, saveDir)
+
+    initial_data = b'header1,header2\nvalue1,value2\nvalue3,value4'
+    new_data = b'header1,header2\nvalue5,value6\nvalue7,value8'
+
+    # it saves a new file in given dir 
+    tide_grabber.saveResponse(initial_data)
+    assert os.path.exists(expected_savePath)
+    assert os.path.isfile(expected_savePath)
+    with open(expected_savePath, 'rb') as f:
+        contents = f.read()
+        assert contents == initial_data
+
+    # it saves a new file in given dir 
+    tide_grabber.saveResponse(new_data)
+    assert os.path.exists(expected_savePath)
+    assert os.path.isfile(expected_savePath)
+    with open(expected_savePath, 'rb') as f:
+        contents = f.read()
+        assert contents == new_data 
+
+    # it overwrites an old file if it already exists
 
 def test_TideGrabber_run():
     """Test behaviour of TideGrabber.run()
