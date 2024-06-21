@@ -1,5 +1,4 @@
-FROM continuumio/miniconda3
-
+FROM conda/miniconda3
 COPY ./files/gcloud_cli/google-cloud-cli-481.0.0-linux-x86_64.tar.gz /gcloud_cli.tar.gz
 COPY ./files/auth/gcloud_cli_auth.json /gcloud_cli_auth.json
 
