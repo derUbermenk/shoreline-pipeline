@@ -1,10 +1,11 @@
-FROM continuumio/miniconda3:24.4.0-0
+FROM condaforge/mambaforge:24.3.0-0
+
 SHELL [ "/bin/bash", "-c" ]
 WORKDIR /home
 COPY ./files/gcloud_cli/google-cloud-cli-481.0.0-linux-x86_64.tar.gz /home/gcloud_cli.tar.gz
 COPY ./files/auth/gcloud_cli_auth.json /home/gcloud_cli_auth.json
 COPY ./files/CoastSat-master /home/CoastSat-master
-COPY .files/environment.yml /home/environment.yml
+COPY ./files/environment.yml /tmp/environment.yml
 
 # install gclould cli
 RUN tar -xf /home/gcloud_cli.tar.gz
@@ -16,3 +17,17 @@ ENV PATH="/home/google-cloud-sdk/bin:${PATH}"
 # authenticate gcloud cli
 ENV KEY_FILE="/home/gcloud_cli_auth.json"
 RUN gcloud auth login --cred-file=$KEY_FILE
+
+WORKDIR /home/CoastSat-master
+RUN yes | mamba env create -f /tmp/environment.yml && \
+    mamba clean --all --yes && \
+    rm -rf /opt/conda/pkgs
+
+SHELL ["mamba", "run", "-n", "coastsat", "/bin/bash", "-c"]
+
+RUN pip install pyqt5 imageio-ffmpeg
+
+# running application
+# CMD ["mamba", "run", "-n", "coastsat", "python", "your_script.py"]
+
+
