@@ -4,6 +4,7 @@ WORKDIR /home
 COPY ./files/gcloud_cli/google-cloud-cli-481.0.0-linux-x86_64.tar.gz /home/gcloud_cli.tar.gz
 COPY ./files/auth/gcloud_cli_auth.json /home/gcloud_cli_auth.json
 COPY ./files/CoastSat-master /home/CoastSat-master
+COPY .files/environment.yml /home/environment.yml
 
 # install gclould cli
 RUN tar -xf /home/gcloud_cli.tar.gz
