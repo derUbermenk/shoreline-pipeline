@@ -4,8 +4,8 @@ SHELL [ "/bin/bash", "-c" ]
 WORKDIR /home
 COPY ./files/gcloud_cli/google-cloud-cli-481.0.0-linux-x86_64.tar.gz /home/gcloud_cli.tar.gz
 COPY ./files/auth/gcloud_cli_auth.json /home/gcloud_cli_auth.json
-COPY ./files/CoastSat-master /home/CoastSat-master
 COPY ./files/environment.yml /tmp/environment.yml
+COPY ./files/CoastSat /home/CoastSat
 
 # install gclould cli
 RUN tar -xf /home/gcloud_cli.tar.gz
@@ -23,11 +23,13 @@ RUN yes | mamba env create -f /tmp/environment.yml && \
     mamba clean --all --yes && \
     rm -rf /opt/conda/pkgs
 
+# Change the default shell to use mamba run in the coastsat environment
 SHELL ["mamba", "run", "-n", "coastsat", "/bin/bash", "-c"]
 
-RUN pip install pyqt5 imageio-ffmpeg
+RUN pip install pyqt5 imageio-ffmpeg 
 
 # running application
 # CMD ["mamba", "run", "-n", "coastsat", "python", "your_script.py"]
 
+CMD ["mamba", "run", "-n", "coastsat", "jupyter", "notebook", "--ip=0.0.0.0", "--port=8888", "--no-browser", "--allow-root"]
 

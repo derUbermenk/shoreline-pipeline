@@ -1,0 +1,3 @@
+[submodule "images/coastsat/files/CoastSat"]
+	path = images/coastsat/files/CoastSat
+	url = git@github.com:derUbermenk/CoastSat.git
