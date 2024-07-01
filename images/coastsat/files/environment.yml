@@ -1,4 +1,4 @@
-name: coastsat 
+name: coastsat
 channels:
   - conda-forge
 dependencies:
@@ -8,3 +8,4 @@ dependencies:
   - matplotlib
   - astropy
   - notebook
+  - jupyter
