@@ -1,4 +1,4 @@
-from coastsat import initializeCoastSatRunner, CoastSatRunner
+from CoastSat import initializeCoastSatRunner, CoastSatRunner
 
 def test_initializeCoastSatRunner():
     startDate = "2024-01-01"
@@ -28,14 +28,12 @@ def test_initializeCoastSatRunner():
 
     coastSatRunner = initializeCoastSatRunner(args)
 
-
-    coastSatRunner.endDate = endDate
-    coastSatRunner.saveDir = saveDir
-    coastSatRunner.coordinates = coordinates
-    coastSatRunner.sitename = sitename
-    coastSatRunner.epsg = epsg
-    coastSatRunner.transects = transects
-    coastSatRunner.tides = tides
-
     assert isinstance(coastSatRunner, CoastSatRunner)
-    assert isinstance(coastSatRunner.startDate, startDate)   
+    assert coastSatRunner.startDate == startDate   
+    assert coastSatRunner.endDate == endDate
+    assert coastSatRunner.saveDir == saveDir
+    assert coastSatRunner.coordinates == coordinates
+    assert coastSatRunner.sitename == sitename
+    assert coastSatRunner.epsg == epsg
+    assert coastSatRunner.transects == transects
+    assert coastSatRunner.tides == tides
