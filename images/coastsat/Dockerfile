@@ -36,3 +36,4 @@ SHELL ["mamba", "run", "-n", "coastsat", "/bin/bash", "-c"]
 # CMD ["mamba", "run", "-n", "coastsat", "jupyter", "notebook", "--ip=0.0.0.0", "--port=8888", "--no-browser", "--allow-root"]
 
 ENTRYPOINT [ "mamba", "run", "-n", "coastsat", "coastSatRunner"]
+# CMD [ "mamba", "run", "-n", "coastsat", "coastSatRunner"]
