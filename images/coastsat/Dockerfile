@@ -1,10 +1,24 @@
 FROM condaforge/mambaforge:24.3.0-0
 
+ARG COASTSAT_BRANCH=master
+ENV REPO_ZIP=https://github.com/derUbermenk/CoastSat/archive/refs/heads/${COASTSAT_BRANCH}
+
+RUN apt-get update \
+    && apt-get install -y unzip \
+    && rm -rf /var/lib/apt/lists/*
+
 SHELL [ "/bin/bash", "-c" ]
 WORKDIR /home
 COPY ./files/gcloud_cli/google-cloud-cli-481.0.0-linux-x86_64.tar.gz /home/gcloud_cli.tar.gz
 COPY ./files/auth/gcloud_cli_auth.json /home/gcloud_cli_auth.json
-COPY ./CoastSat /home/CoastSat
+
+
+RUN mkdir /tmp/CoastSat
+RUN mkdir CoastSat
+
+RUN wget -O CoastSat.zip ${REPO_ZIP}.zip
+RUN unzip CoastSat.zip -d /tmp/CoastSat
+RUN mv /tmp/CoastSat/*/* CoastSat
 
 # install gclould cli
 RUN tar -xf /home/gcloud_cli.tar.gz
