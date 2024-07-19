@@ -1,4 +1,7 @@
 .shoreline-pipeline
+**/auth
+**/gcloud_cli
+**/coastsat/files
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
