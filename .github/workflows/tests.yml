@@ -25,4 +25,4 @@ jobs:
         run: ls .
 
       - name: Run pytest tests
-        run: python -m pytest **/**tests
+        run: python -m pytest 
