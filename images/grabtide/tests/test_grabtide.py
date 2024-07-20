@@ -39,9 +39,10 @@ def test_initializeTideGrabber(mocker):
     startDate = "20240101"
     endDate = "20240131"
     saveDir = "path/to/saveDir/"
+    station_id = '11111'
     expected_savePath = f"{saveDir}{startDate}_{endDate}.csv"
 
-    args = [startDate, endDate, saveDir]
+    args = [startDate, endDate, saveDir, station_id]
 
     # mock checkPath
     mocker.patch('grabtide.tide_grabber.checkDirExists')
@@ -52,14 +53,16 @@ def test_initializeTideGrabber(mocker):
     assert tide_grabber.startDate == startDate
     assert tide_grabber.endDate == endDate
     assert tide_grabber.savePath == expected_savePath 
+    assert tide_grabber.stationID == station_id 
 
     # set 2: even when save dir is lacking a trailing /
     startDate = "20240101"
     endDate = "20240131"
     saveDir = "path/to/saveDir"
+    station_id = '11111'
     expected_savePath = f"{saveDir}/{startDate}_{endDate}.csv"
 
-    args = [startDate, endDate, saveDir]
+    args = [startDate, endDate, saveDir, station_id]
 
     tide_grabber =  initializeTideGrabber(args)
     assert isinstance(tide_grabber, TideGrabber)
@@ -67,6 +70,7 @@ def test_initializeTideGrabber(mocker):
     assert tide_grabber.startDate == startDate
     assert tide_grabber.endDate == endDate
     assert tide_grabber.savePath == expected_savePath
+    assert tide_grabber.stationID == station_id 
 
 def test_TideGrabber_request_sucess():
     """Test the behaviour of of TideGrabber.request on success
@@ -78,6 +82,7 @@ def test_TideGrabber_request_sucess():
     startDate = "20240101"
     endDate = "20240131"
     saveDir = "path/to/saveDir"
+    station_id = '9440083'
 
     correct_url = 'https://tidesandcurrents.noaa.gov/api/datagetter' 
     correct_params = {
@@ -86,14 +91,14 @@ def test_TideGrabber_request_sucess():
         'begin_date': startDate,
         'end_date': endDate,
         'datum': 'MSL',
-        'station': '1631428',
+        'station': station_id, 
         'time_zone': 'GMT',
         'units': 'metric',
         'interval': '6',
         'format': 'csv'
     }
 
-    tide_grabber = TideGrabber(startDate, endDate, saveDir)
+    tide_grabber = TideGrabber(startDate, endDate, saveDir, station_id)
 
     successful_response = Mock() 
     successful_response.status_code = 200 
@@ -120,6 +125,7 @@ def test_TideGrabber_request_unsucessful():
     startDate = "20240101"
     endDate = "20240131"
     saveDir = "path/to/saveDir"
+    station_id = '9440083'
 
     correct_url = 'https://tidesandcurrents.noaa.gov/api/datagetter' 
     correct_params = {
@@ -128,7 +134,7 @@ def test_TideGrabber_request_unsucessful():
         'begin_date': startDate,
         'end_date': endDate,
         'datum': 'MSL',
-        'station': '1631428',
+        'station': station_id,
         'time_zone': 'GMT',
         'units': 'metric',
         'interval': '6',
@@ -136,7 +142,7 @@ def test_TideGrabber_request_unsucessful():
     }
 
 
-    tide_grabber = TideGrabber(startDate, endDate, saveDir)
+    tide_grabber = TideGrabber(startDate, endDate, saveDir, station_id)
 
     unsuccessful_response = Mock() 
     unsuccessful_response.status_code = 404
@@ -168,9 +174,10 @@ def test_TideGrabber_saveResponse():
     startDate = "20240101"
     endDate = "20240131"
     saveDir = tmp_dir.name 
+    station_id = '9440083'
     expected_savePath = os.path.join(saveDir, f"{startDate}_{endDate}.csv")
 
-    tide_grabber = TideGrabber(startDate, endDate, saveDir)
+    tide_grabber = TideGrabber(startDate, endDate, saveDir, station_id)
 
     initial_data = b'header1,header2\nvalue1,value2\nvalue3,value4'
     new_data = b'header1,header2\nvalue5,value6\nvalue7,value8'
@@ -200,11 +207,12 @@ def test_TideGrabber_run():
     startDate = "20240101"
     endDate = "20240131"
     saveDir = "path/to/saveDir"
+    station_id = '9440083'
 
     mock_content = b'content'
     with patch('grabtide.TideGrabber.request', return_value=mock_content) as mock_request:
         with patch('grabtide.TideGrabber.saveResponse') as mock_saveResponse:
-            tide_grabber = TideGrabber(startDate, endDate, saveDir)
+            tide_grabber = TideGrabber(startDate, endDate, saveDir, station_id)
             tide_grabber.run()
 
             mock_request.assert_called_once() 
@@ -224,8 +232,9 @@ def test_integration_TideGrabber_run():
     startDate = "20240101"
     endDate = "20240131"
     saveDir = tmp_dir.name 
+    station_id = '9440083'
 
-    tide_grabber = TideGrabber(startDate, endDate, saveDir)
+    tide_grabber = TideGrabber(startDate, endDate, saveDir, station_id)
 
     expected_savePath = os.path.join(saveDir, f"{startDate}_{endDate}.csv")
     expected_columns = ["Date Time", " Prediction"]
