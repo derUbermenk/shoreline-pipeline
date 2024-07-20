@@ -179,8 +179,8 @@ def test_TideGrabber_saveResponse():
 
     tide_grabber = TideGrabber(startDate, endDate, saveDir, station_id)
 
-    initial_data = b'header1,header2\nvalue1,value2\nvalue3,value4'
-    new_data = b'header1,header2\nvalue5,value6\nvalue7,value8'
+    initial_data = b'dates,tide\nvalue1,value2\nvalue3,value4'
+    new_data = b'dates,tide\nvalue5,value6\nvalue7,value8'
 
     # it saves a new file in given dir 
     tide_grabber.saveResponse(initial_data)

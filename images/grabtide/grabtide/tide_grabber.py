@@ -6,7 +6,7 @@ import os
 import sys
 
 class TideGrabber():
-    def __init__(self, startDate: str, endDate: str, saveDir: str):
+    def __init__(self, startDate: str, endDate: str, saveDir: str, station_id: str):
         """Initializes a tide grabber object
 
         Parameters
@@ -21,6 +21,7 @@ class TideGrabber():
         self.startDate = startDate
         self.endDate = endDate
         self.saveDir = saveDir.rstrip('/')
+        self.stationID = station_id
 
         self.savePath = self.formatSavePath()
         return
@@ -36,7 +37,7 @@ class TideGrabber():
             'begin_date': self.startDate,
             'end_date': self.endDate,
             'datum': 'MSL',
-            'station': '1631428',
+            'station': self.stationID,
             'time_zone': 'GMT',
             'units': 'metric',
             'interval': '6',
@@ -59,8 +60,21 @@ class TideGrabber():
         ----------
         content: bytes
         """
-        with open(self.savePath, 'wb') as file:
-            file.write(content)
+        new_headers = ["dates","tide"]
+
+        # Decode bytes to string assuming UTF-8 encoding
+        content_string = content.decode('utf-8')
+
+        # Split the content into lines
+        lines = content_string.splitlines()
+
+        # Replace the header with new_headers
+        lines[0] = ','.join(new_headers)
+
+        updated_content = '\n'.join(lines)
+
+        with open(self.savePath, 'w', newline='') as file:
+            file.write(updated_content)
 
     def run(self):    
         response_content = self.request()
@@ -90,7 +104,7 @@ def initializeTideGrabber(args) -> TideGrabber:
     parser.add_argument('startdate', help='start date of range (yyyymmdd)')
     parser.add_argument('enddate', help='end date of range (yyyymmdd)')
     parser.add_argument('saveDir', help='save dir of csv file')
-    parser.add_argument('--stationid', help='stationid')
+    parser.add_argument('stationid', help='stationid')
     parser.add_argument('--units', help='units')
     parser.add_argument('--interval', help='interval')
     parser.add_argument('--timezone', help='timezone')
@@ -100,5 +114,5 @@ def initializeTideGrabber(args) -> TideGrabber:
 
     checkDirExists(args_.saveDir)
 
-    tide_grabber = TideGrabber(args_.startdate, args_.enddate, args_.saveDir)
+    tide_grabber = TideGrabber(args_.startdate, args_.enddate, args_.saveDir, args_.stationid)
     return tide_grabber
