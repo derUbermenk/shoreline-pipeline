@@ -1,0 +1,1 @@
+apache-airflow-providers-docker==1.1.0

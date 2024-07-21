@@ -40,7 +40,7 @@ def test_initializeTideGrabber(mocker):
     endDate = "20240131"
     saveDir = "path/to/saveDir/"
     station_id = '11111'
-    expected_savePath = f"{saveDir}{startDate}_{endDate}.csv"
+    expected_savePath = f"{saveDir}{startDate}_{endDate}_tides.csv"
 
     args = [startDate, endDate, saveDir, station_id]
 
@@ -60,7 +60,7 @@ def test_initializeTideGrabber(mocker):
     endDate = "20240131"
     saveDir = "path/to/saveDir"
     station_id = '11111'
-    expected_savePath = f"{saveDir}/{startDate}_{endDate}.csv"
+    expected_savePath = f"{saveDir}/{startDate}_{endDate}_tides.csv"
 
     args = [startDate, endDate, saveDir, station_id]
 
@@ -94,7 +94,7 @@ def test_TideGrabber_request_sucess():
         'station': station_id, 
         'time_zone': 'GMT',
         'units': 'metric',
-        'interval': '6',
+        'interval': 'h',
         'format': 'csv'
     }
 
@@ -137,7 +137,7 @@ def test_TideGrabber_request_unsucessful():
         'station': station_id,
         'time_zone': 'GMT',
         'units': 'metric',
-        'interval': '6',
+        'interval': 'h',
         'format': 'csv'
     }
 
@@ -175,7 +175,7 @@ def test_TideGrabber_saveResponse():
     endDate = "20240131"
     saveDir = tmp_dir.name 
     station_id = '9440083'
-    expected_savePath = os.path.join(saveDir, f"{startDate}_{endDate}.csv")
+    expected_savePath = os.path.join(saveDir, f"{startDate}_{endDate}_tides.csv")
 
     tide_grabber = TideGrabber(startDate, endDate, saveDir, station_id)
 
@@ -236,7 +236,7 @@ def test_integration_TideGrabber_run():
 
     tide_grabber = TideGrabber(startDate, endDate, saveDir, station_id)
 
-    expected_savePath = os.path.join(saveDir, f"{startDate}_{endDate}.csv")
+    expected_savePath = os.path.join(saveDir, f"{startDate}_{endDate}_tides.csv")
     expected_columns = ["dates","tide"]
 
 
@@ -253,7 +253,7 @@ def test_integration_TideGrabber_run():
         
         # assert that the first Date time is whats expected
         assert rows[1][0] == "2024-01-01 00:00"
-        assert rows[-1][0] == "2024-01-31 23:54"
+        assert rows[-1][0] == "2024-01-31 23:00"
 
     
 

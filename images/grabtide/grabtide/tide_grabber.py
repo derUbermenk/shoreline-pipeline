@@ -6,7 +6,7 @@ import os
 import sys
 
 class TideGrabber():
-    def __init__(self, startDate: str, endDate: str, saveDir: str, station_id: str):
+    def __init__(self, startDate: str, endDate: str, saveDir: str, station_id: str, interval: str = 'h'):
         """Initializes a tide grabber object
 
         Parameters
@@ -24,10 +24,12 @@ class TideGrabber():
         self.stationID = station_id
 
         self.savePath = self.formatSavePath()
+        self.interval = interval
         return
 
     def formatSavePath(self):
-        return os.path.join(self.saveDir, f"{self.startDate}_{self.endDate}.csv")
+        return os.path.join(self.saveDir, f"{self.startDate}_{self.endDate}_tides.csv")
+        # return os.path.join(self.saveDir, "tides.csv")
 
     def request(self):
         url = 'https://tidesandcurrents.noaa.gov/api/datagetter' 
@@ -40,7 +42,7 @@ class TideGrabber():
             'station': self.stationID,
             'time_zone': 'GMT',
             'units': 'metric',
-            'interval': '6',
+            'interval': self.interval,
             'format': 'csv'
         }
 
@@ -116,3 +118,7 @@ def initializeTideGrabber(args) -> TideGrabber:
 
     tide_grabber = TideGrabber(args_.startdate, args_.enddate, args_.saveDir, args_.stationid)
     return tide_grabber
+
+if __name__ == "__main__":
+    tide_grabber = initializeTideGrabber(sys.argv[1:])
+    tide_grabber.run()
