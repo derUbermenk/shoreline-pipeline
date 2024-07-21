@@ -28,8 +28,8 @@ class TideGrabber():
         return
 
     def formatSavePath(self):
-        # return os.path.join(self.saveDir, f"{self.startDate}_{self.endDate}.csv")
-        return os.path.join(self.saveDir, "tides.csv")
+        return os.path.join(self.saveDir, f"{self.startDate}_{self.endDate}_tides.csv")
+        # return os.path.join(self.saveDir, "tides.csv")
 
     def request(self):
         url = 'https://tidesandcurrents.noaa.gov/api/datagetter' 
