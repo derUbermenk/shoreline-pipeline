@@ -118,3 +118,7 @@ def initializeTideGrabber(args) -> TideGrabber:
 
     tide_grabber = TideGrabber(args_.startdate, args_.enddate, args_.saveDir, args_.stationid)
     return tide_grabber
+
+if __name__ == "__main__":
+    tide_grabber = initializeTideGrabber(sys.argv[1:])
+    tide_grabber.run()
