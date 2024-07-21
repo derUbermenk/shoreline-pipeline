@@ -8,7 +8,7 @@ chm_bc_coastline_pipeline = DAG(
     description = "coastline tracking for Chesterman beach, British Columbia, Canada",
     start_date=datetime.datetime(2024, 1, 1),
     end_date=datetime.datetime(2024, 6, 1),
-    schedule_interval="@daily"
+    schedule_interval="@monthly"
 )
 
 grabtide = DockerOperator(
@@ -21,8 +21,11 @@ grabtide = DockerOperator(
         "/output",
         "9440083"
     ],
-    mounts = [
-        Mount(source="./data/9440083/input", target="/output", type="bind"),
+    # mounts = [
+    #     Mount(source="/home/admini/Documents/shoreline-pipeline/data/9440083/input", target="/output", type="bind"),
+    # ]
+    volumes = [
+    "/home/admini/Documents/shoreline-pipeline/data/9440083/input:/output"
     ]
 )
 
@@ -41,16 +44,20 @@ coastsat = DockerOperator(
         [-125.895220405324,49.1237726477147]]",
         "CHESTERMANN",
         "3005",
-        "/output/transects.geojson",
-        "/output/tides.csv",
-        "/output/ref_shoreline.pkl"
+        "/input/transects.geojson",
+        "/input/{{ds_nodash}}_{{next_ds_nodash}}tides.csv",
+        "/input/ref_shoreline.pkl"
     ],
     environment={
         'SERVICE_ACCOUNT_EMAIL': 'sat-img-dl@satimagedownloader.iam.gserviceaccount.com'
     },
-    mounts = [
-        Mount(source="./data/9440083/input", target="/input", type="bind"),
-        Mount(source="./data/9440083/output", target="/output", type="bind"),
+    # mounts = [
+    #     Mount(source="/home/admini/Documents/shoreline-pipeline/data/9440083/input", target="/input", type="bind"),
+    #     Mount(source="/home/admini/Documents/shoreline-pipeline/data/9440083/output", target="/output", type="bind"),
+    # ]
+    volumes = [
+    "/home/admini/Documents/shoreline-pipeline/data/9440083/input:/input",
+    "/home/admini/Documents/shoreline-pipeline/data/9440083/output:/output"
     ]
 )
 
