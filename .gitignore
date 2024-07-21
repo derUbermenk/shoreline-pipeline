@@ -1,4 +1,7 @@
 .shoreline-pipeline
+data/airflowDB/
+data/*/input
+data/*/output
 **/auth
 **/gcloud_cli
 **/coastsat/files
