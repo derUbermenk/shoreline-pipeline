@@ -5,7 +5,7 @@ from docker.types import Mount
 
 chm_bc_coastline_pipeline = DAG(
     dag_id="chm_bc_coastline_pipeline",
-    description = "pseudo sends emails. just saves to csv",
+    description = "coastline tracking for Chesterman beach, British Columbia, Canada",
     start_date=datetime.datetime(2024, 1, 1),
     end_date=datetime.datetime(2024, 6, 1),
     schedule_interval="@daily"
@@ -45,6 +45,9 @@ coastsat = DockerOperator(
         "/output/tides.csv",
         "/output/ref_shoreline.pkl"
     ],
+    environment={
+        'SERVICE_ACCOUNT_EMAIL': 'sat-img-dl@satimagedownloader.iam.gserviceaccount.com'
+    },
     mounts = [
         Mount(source="./data/9440083/input", target="/input", type="bind"),
         Mount(source="./data/9440083/output", target="/output", type="bind"),
