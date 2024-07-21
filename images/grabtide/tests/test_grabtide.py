@@ -40,7 +40,8 @@ def test_initializeTideGrabber(mocker):
     endDate = "20240131"
     saveDir = "path/to/saveDir/"
     station_id = '11111'
-    expected_savePath = f"{saveDir}{startDate}_{endDate}.csv"
+    # expected_savePath = f"{saveDir}{startDate}_{endDate}.csv"
+    expected_savePath = f"{saveDir}tides.csv"
 
     args = [startDate, endDate, saveDir, station_id]
 
@@ -60,7 +61,7 @@ def test_initializeTideGrabber(mocker):
     endDate = "20240131"
     saveDir = "path/to/saveDir"
     station_id = '11111'
-    expected_savePath = f"{saveDir}/{startDate}_{endDate}.csv"
+    expected_savePath = f"{saveDir}/tides.csv"
 
     args = [startDate, endDate, saveDir, station_id]
 
@@ -175,7 +176,8 @@ def test_TideGrabber_saveResponse():
     endDate = "20240131"
     saveDir = tmp_dir.name 
     station_id = '9440083'
-    expected_savePath = os.path.join(saveDir, f"{startDate}_{endDate}.csv")
+    # expected_savePath = os.path.join(saveDir, f"{startDate}_{endDate}.csv")
+    expected_savePath = os.path.join(saveDir, "tides.csv")
 
     tide_grabber = TideGrabber(startDate, endDate, saveDir, station_id)
 
@@ -236,7 +238,7 @@ def test_integration_TideGrabber_run():
 
     tide_grabber = TideGrabber(startDate, endDate, saveDir, station_id)
 
-    expected_savePath = os.path.join(saveDir, f"{startDate}_{endDate}.csv")
+    expected_savePath = os.path.join(saveDir, "tides.csv")
     expected_columns = ["dates","tide"]
 
 
