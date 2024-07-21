@@ -45,7 +45,7 @@ coastsat = DockerOperator(
         "CHESTERMANN",
         "3005",
         "/input/transects.geojson",
-        "/input/{{ds_nodash}}_{{next_ds_nodash}}tides.csv",
+        "/input/{{ds_nodash}}_{{next_ds_nodash}}_tides.csv",
         "/input/ref_shoreline.pkl"
     ],
     environment={
