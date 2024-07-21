@@ -39,7 +39,7 @@ services:
     ports:
       - "8080:8080"
     volumes:
-      - ./data/logs:/opt/airflow/logs
+      - logs:/opt/airflow/logs
     environment: *airflow_environment
     command: webserver
 
@@ -49,7 +49,11 @@ services:
     depends_on:
       - postgres
     volumes:
-      - ./data/logs:/opt/airflow/logs
+      - logs:/opt/airflow/logs
       - ./dags:/opt/airflow/dags
+      - /var/run/docker.sock:/var/run/docker.sock
     environment: *airflow_environment
     command: scheduler
+
+volumes:
+  logs:
