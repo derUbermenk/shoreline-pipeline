@@ -6,7 +6,7 @@ import os
 import sys
 
 class TideGrabber():
-    def __init__(self, startDate: str, endDate: str, saveDir: str, station_id: str):
+    def __init__(self, startDate: str, endDate: str, saveDir: str, station_id: str, interval: str = 'h'):
         """Initializes a tide grabber object
 
         Parameters
@@ -24,6 +24,7 @@ class TideGrabber():
         self.stationID = station_id
 
         self.savePath = self.formatSavePath()
+        self.interval = interval
         return
 
     def formatSavePath(self):
@@ -40,7 +41,7 @@ class TideGrabber():
             'station': self.stationID,
             'time_zone': 'GMT',
             'units': 'metric',
-            'interval': '6',
+            'interval': self.interval,
             'format': 'csv'
         }
 

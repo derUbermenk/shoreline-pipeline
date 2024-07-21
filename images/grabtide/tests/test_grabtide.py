@@ -94,7 +94,7 @@ def test_TideGrabber_request_sucess():
         'station': station_id, 
         'time_zone': 'GMT',
         'units': 'metric',
-        'interval': '6',
+        'interval': 'h',
         'format': 'csv'
     }
 
@@ -137,7 +137,7 @@ def test_TideGrabber_request_unsucessful():
         'station': station_id,
         'time_zone': 'GMT',
         'units': 'metric',
-        'interval': '6',
+        'interval': 'h',
         'format': 'csv'
     }
 
@@ -253,7 +253,7 @@ def test_integration_TideGrabber_run():
         
         # assert that the first Date time is whats expected
         assert rows[1][0] == "2024-01-01 00:00"
-        assert rows[-1][0] == "2024-01-31 23:54"
+        assert rows[-1][0] == "2024-01-31 23:00"
 
     
 
