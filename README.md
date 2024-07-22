@@ -1,6 +1,6 @@
 <h1>Shoreline Pipeline</h1>
 
-Grabs images of coastlines in a particular location and outputs tidally correction shoreline intersects
+Grabs images of coastlines in a particular location and outputs tide corrected shoreline intersects
 <img src="https://github.com/user-attachments/assets/0d5df6f7-b9be-49c5-b74e-50e0834c561a" alt="image"/>
 
 <h3><i>Planned Features</i></h3>
