@@ -1,6 +1,6 @@
 FROM python:3.10-slim
 
-COPY ./parser_requirements.txt /tmp/requirements.txt
+COPY ./requirements.txt /tmp/requirements.txt
 RUN python -m pip install -r /tmp/requirements.txt
 
 COPY ./parser_runner.sh /usr/local/bin/parser_runner
