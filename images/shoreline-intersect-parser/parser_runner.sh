@@ -21,8 +21,6 @@ branch=$4
 
 link=https://api.github.com/repos/derUbermenk/shoreline-intersect-parser/tarball/$branch
 
-
-# download branch
 mkdir /_parser
 mkdir /parser
 
@@ -37,8 +35,3 @@ chmod +x /parser/intersect_parser $1 $2 $3
 
 export PATH="/parser:$PATH"
 ./intersect_parser $1 $2 $3
-
-
-
-
-
