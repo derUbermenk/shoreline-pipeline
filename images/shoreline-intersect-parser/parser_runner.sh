@@ -26,12 +26,14 @@ mkdir /parser
 
 echo "Downloading from $branch"
 echo " using: $link"
-wget $link -O /parser.tar
+python -m wget -o /parser.tar $link 
 
 tar -xf /parser.tar -C /_parser
 mv /_parser/*/* /parser
 cp /parser/intersect_parser.py /parser/intersect_parser
-chmod +x /parser/intersect_parser $1 $2 $3
+chmod +x /parser/intersect_parser
 
 export PATH="/parser:$PATH"
-./intersect_parser $1 $2 $3
+echo $PATH
+ls /parser
+intersect_parser $1 $2 $3
