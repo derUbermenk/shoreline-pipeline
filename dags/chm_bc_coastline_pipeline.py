@@ -18,14 +18,14 @@ grabtide = DockerOperator(
     command = [
         "{{ds_nodash}}",
         "{{next_ds_nodash}}",
-        "/output",
+        "/tides",
         "9440083"
     ],
     # mounts = [
     #     Mount(source="/home/admini/Documents/shoreline-pipeline/data/9440083/input", target="/output", type="bind"),
     # ]
     volumes = [
-    "/home/admini/Documents/shoreline-pipeline/data/9440083/input:/output"
+    "/home/admini/Documents/shoreline-pipeline/data/9440083/tides:/tides"
     ]
 )
 
