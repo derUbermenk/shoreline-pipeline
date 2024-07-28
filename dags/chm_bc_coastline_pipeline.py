@@ -25,7 +25,7 @@ grabtide = DockerOperator(
     #     Mount(source="/home/admini/Documents/shoreline-pipeline/data/9440083/input", target="/output", type="bind"),
     # ]
     volumes = [
-    "/home/admini/Documents/shoreline-pipeline/data/9440083/tides:/tides"
+    "/home/admini/Documents/shoreline-pipeline/data/chesterman_bc_9440083/tides:/tides"
     ]
 )
 
@@ -36,7 +36,7 @@ coastsat = DockerOperator(
     command = [
         "{{ds}}",
         "{{next_ds}}",
-        "/output",
+        "/intersects",
         "[[-125.895220405324,49.1237726477147], \
         [-125.88841138016,49.1127817966321],  \
         [-125.899425059767,49.1098655680256], \
@@ -45,7 +45,7 @@ coastsat = DockerOperator(
         "CHESTERMANN",
         "3005",
         "/input/transects.geojson",
-        "/input/{{ds_nodash}}_{{next_ds_nodash}}_tides.csv",
+        "/tides/{{ds_nodash}}_{{next_ds_nodash}}_tides.csv",
         "/input/ref_shoreline.pkl"
     ],
     environment={
@@ -56,8 +56,9 @@ coastsat = DockerOperator(
     #     Mount(source="/home/admini/Documents/shoreline-pipeline/data/9440083/output", target="/output", type="bind"),
     # ]
     volumes = [
-    "/home/admini/Documents/shoreline-pipeline/data/9440083/input:/input",
-    "/home/admini/Documents/shoreline-pipeline/data/9440083/output:/output"
+    "/home/admini/Documents/shoreline-pipeline/data/chesterman_bc_9440083/input:/input",
+    "/home/admini/Documents/shoreline-pipeline/data/chesterman_bc_9440083/tides:/tides",
+    "/home/admini/Documents/shoreline-pipeline/data/chesterman_bc_9440083/intersects:/intersects"
     ]
 )
 
