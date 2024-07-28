@@ -20,7 +20,7 @@ Grabs images of coastlines in a particular location and outputs tide corrected s
 
 <h3><i>Recently implemented</i></h3>
   <ul>
-    <li> Add task for csv to geojson transformation to enable storing in GIS supported DBs; PostGIS for example.
+    <li> <a href="https://github.com/derUbermenk/shoreline-intersect-parser">derUbermenk/shoreline-intersect-parser</a>: Add task for csv to geojson transformation to enable storing in GIS supported DBs; PostGIS for example.
     <p>See <a href="https://github.com/derUbermenk/undergraduate-thesis#:~:text=Transform%20data%20into%20workable%20formats">Transform into workable formats</a> </p>
       <img src="https://github.com/user-attachments/assets/9cd59fe1-a54d-4f5f-a54a-eb49ca588c61" alt="image"  style="width: 40%; height: 40%;" />
     <p>Implementation now uses shapely instead of the originally planned in-qgis transformation. Writing a new implementation was more straightforward than refactoring the sphagetti that was my old code</p>
