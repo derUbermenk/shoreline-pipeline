@@ -1,7 +1,7 @@
 <h1>Shoreline Pipeline</h1>
 
 Grabs images of coastlines in a particular location and outputs tide corrected shoreline intersects
-<img src="https://github.com/user-attachments/assets/0d5df6f7-b9be-49c5-b74e-50e0834c561a" alt="image"/>
+<img src="https://github.com/user-attachments/assets/04f68437-3ae0-42fd-88cb-85fa74b6b7ad" alt="image"/>
 
 <h3><i>Planned Features</i></h3>
 <ul>
@@ -9,11 +9,23 @@ Grabs images of coastlines in a particular location and outputs tide corrected s
   <p>See <a href="https://github.com/derUbermenk/undergraduate-thesis#:~:text=Smoothen%20detected%20shoreline%20traces">smoothing shorelines</a> at derUbermenk/undergraduate-thesis </p>
     <img src="https://github.com/user-attachments/assets/10910468-96bc-447b-a4ad-73818aebbf2b"  style="width: 40%; height: 40%;" />
   </li>
-  <li> Add task for csv to geojson transformation to enable storing GIS dbs; PostGIS for example.
-  <p>See <a href="https://github.com/derUbermenk/undergraduate-thesis#:~:text=Transform%20data%20into%20workable%20formats">Transform into workable formats</a> </p>
-    <img src="https://github.com/user-attachments/assets/9cd59fe1-a54d-4f5f-a54a-eb49ca588c61" alt="image"  style="width: 40%; height: 40%;" />
+  
+  <li> Add task for computing shoreline change statistics. See <a href="https://github.com/derUbermenk/undergraduate-thesis#:~:text=CoastCR%20for%20calculating%20shoreline%20change%20statistics">computing statics</a> using <a href="https://github.com/alejandro-gomez/CoastCR">CoastCR</a>
+  </li>
+
+  <li>Use git and repo branches to control program versions used within each task image. At present, this is only implemented in the parse_intersects tasks. Having this in the other tasks would remove the need to rebuild task images
+    everytime the program being ran within is updated. Instead a compressed version of the input branch is downloaded once a container is executed
   </li>
 </ul>
+
+<h3><i>Recently implemented</i></h3>
+  <ul>
+    <li> Add task for csv to geojson transformation to enable storing in GIS supported DBs; PostGIS for example.
+    <p>See <a href="https://github.com/derUbermenk/undergraduate-thesis#:~:text=Transform%20data%20into%20workable%20formats">Transform into workable formats</a> </p>
+      <img src="https://github.com/user-attachments/assets/9cd59fe1-a54d-4f5f-a54a-eb49ca588c61" alt="image"  style="width: 40%; height: 40%;" />
+    <p>Implementation now uses shapely instead of the originally planned in-qgis transformation. Writing a new implementation was more straightforward than refactoring the sphagetti that was my old code</p>
+    </li>
+  </ul>
 
 <h3> This project utilizes the following resources </h3>
 <ul>
