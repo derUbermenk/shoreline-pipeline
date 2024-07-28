@@ -2,6 +2,7 @@
 data/airflowDB/
 data/*/input
 data/*/output
+data/chesterman_bc_9440083/*
 **/auth
 **/gcloud_cli
 **/coastsat/files
