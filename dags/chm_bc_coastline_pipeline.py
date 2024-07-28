@@ -62,4 +62,21 @@ coastsat = DockerOperator(
     ]
 )
 
+parse_intersects = DockerOperator(
+    task_id = 'parse_intersects',
+    image = 'shoreline-intersect-parser',
+    dag = chm_bc_coastline_pipeline,
+    command = [
+        "/input/transects.geojson",
+        "/intersects/{{ds}}_{{next_ds}}_data.csv",
+        "/segments/{{ds}}_{{next_ds}}_segments.geojson",
+        "dev/create-parser"
+    ],
+    volumes = [
+        "/home/admini/Documents/shoreline-pipeline/data/chesterman_bc_9440083/input:/input",
+        "/home/admini/Documents/shoreline-pipeline/data/chesterman_bc_9440083/intersects:/intersects"
+        "/home/admini/Documents/shoreline-pipeline/data/chesterman_bc_9440083/segments:/segments",
+    ] 
+)
+
 grabtide >> coastsat
