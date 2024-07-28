@@ -33,3 +33,14 @@ Grabs images of coastlines in a particular location and outputs tide corrected s
 <li><a href="https://github.com/kvos/CoastSat">CoastSat</a> for mapping shoreline positions</li>
 <li><a href="https://github.com/derUbermenk/undergraduate-thesis">scripts used as part of my team's undergraduate thesis<a> for preparing necessary input data</li>
 </ul>
+
+
+### Citations
+
+<p>
+Gómez-Pazo, A., Payo, A., Paz-Delgado, M.V., Delgadillo-Calzadilla, M.A. (2022). Open Digital Shoreline Analysis System: ODSAS v1.0. Journal of Marine Science and Engineering, 10, 26. DOI: https://doi.org/10.3390/jmse10010026
+</p>
+
+<p>
+Vos K., Splinter K.D., Harley M.D., Simmons J.A., Turner I.L. (2019). CoastSat: a Google Earth Engine-enabled Python toolkit to extract shorelines from publicly available satellite imagery. Environmental Modelling and Software. 122, 104528. https://doi.org/10.1016/j.envsoft.2019.104528 (Open Access)
+</p>
