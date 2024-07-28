@@ -74,9 +74,9 @@ parse_intersects = DockerOperator(
     ],
     volumes = [
         "/home/admini/Documents/shoreline-pipeline/data/chesterman_bc_9440083/input:/input",
-        "/home/admini/Documents/shoreline-pipeline/data/chesterman_bc_9440083/intersects:/intersects"
-        "/home/admini/Documents/shoreline-pipeline/data/chesterman_bc_9440083/segments:/segments",
+        "/home/admini/Documents/shoreline-pipeline/data/chesterman_bc_9440083/intersects:/intersects",
+        "/home/admini/Documents/shoreline-pipeline/data/chesterman_bc_9440083/segments:/segments"
     ] 
 )
 
-grabtide >> coastsat
+grabtide >> coastsat >> parse_intersects
