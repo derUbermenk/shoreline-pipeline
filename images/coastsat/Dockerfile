@@ -8,47 +8,32 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 
 SHELL [ "/bin/bash", "-c" ]
-WORKDIR /home
-COPY ./files/gcloud_cli/google-cloud-cli-481.0.0-linux-x86_64.tar.gz /home/gcloud_cli.tar.gz
-COPY ./files/auth/gcloud_cli_auth.json /home/gcloud_cli_auth.json
-COPY ./CoastSat /home/CoastSat
+COPY ./files/gcloud_cli/google-cloud-cli-481.0.0-linux-x86_64.tar.gz /gcloud_cli.tar.gz
+COPY ./files/auth/gcloud_cli_auth.json /gcloud_cli_auth.json
+COPY ./environment.yml /environment.yml
+COPY ./runner.sh /usr/local/bin/runner
 
+RUN chmod +x /usr/local/bin/runner
+ENV PATH="/usr/local/bin:${PATH}"
 
-# RUN mkdir /tmp/CoastSat
-# RUN mkdir CoastSat
-
-# RUN wget -O CoastSat.zip ${REPO_ZIP}.zip
-# RUN unzip CoastSat.zip -d /tmp/CoastSat
-# RUN mv /tmp/CoastSat/*/* CoastSat
 
 # install gclould cli
-RUN tar -xf /home/gcloud_cli.tar.gz
-RUN /home/google-cloud-sdk/install.sh -q --path-update true
+RUN tar -xf /gcloud_cli.tar.gz
+RUN /google-cloud-sdk/install.sh -q --path-update true
 
 # using source /root/.bashrc does not add to path, dont know why
 # this way we set it manually
-ENV PATH="/home/google-cloud-sdk/bin:${PATH}"
+ENV PATH="/google-cloud-sdk/bin:${PATH}"
 
 # authenticate gcloud cli
-ENV KEY_FILE="/home/gcloud_cli_auth.json"
+ENV KEY_FILE="/gcloud_cli_auth.json"
 RUN gcloud auth login --cred-file=$KEY_FILE
 
-WORKDIR /home/CoastSat
-RUN cp coastSatRunner.py coastSatRunner
-RUN chmod +x coastSatRunner
-ENV PATH="/home/CoastSat:${PATH}"
-RUN yes | mamba env create -f /home/CoastSat/environment.yml && \
+RUN yes | mamba env create -f /environment.yml && \
     mamba clean --all --yes && \
     rm -rf /opt/conda/pkgs
 
 # Change the default shell to use mamba run in the coastsat environment
-SHELL ["mamba", "run", "-n", "coastsat", "/bin/bash", "-c"]
+# SHELL ["mamba", "run", "-n", "coastsat", "/bin/bash", "-c"]
 
-# RUN pip install pyqt5 imageio-ffmpeg 
-
-# running application
-# CMD ["mamba", "run", "-n", "coastsat", "python", "your_script.py"]
-# CMD ["mamba", "run", "-n", "coastsat", "jupyter", "notebook", "--ip=0.0.0.0", "--port=8888", "--no-browser", "--allow-root"]
-
-ENTRYPOINT [ "mamba", "run", "-n", "coastsat", "coastSatRunner"]
-# CMD [ "mamba", "run", "-n", "coastsat", "coastSatRunner"]
+ENTRYPOINT [ "mamba", "run", "-n", "coastsat", "runner"]
