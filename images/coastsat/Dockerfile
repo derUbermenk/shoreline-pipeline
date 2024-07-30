@@ -11,9 +11,9 @@ SHELL [ "/bin/bash", "-c" ]
 COPY ./files/gcloud_cli/google-cloud-cli-481.0.0-linux-x86_64.tar.gz /gcloud_cli.tar.gz
 COPY ./files/auth/gcloud_cli_auth.json /gcloud_cli_auth.json
 COPY ./environment.yml /environment.yml
-COPY ./runner.sh /usr/local/bin/runner
+COPY ./cs_runner_initializer.sh /usr/local/bin/cs_runner_initializer
 
-RUN chmod +x /usr/local/bin/runner
+RUN chmod +x /usr/local/bin/cs_runner_initializer
 ENV PATH="/usr/local/bin:${PATH}"
 
 
@@ -36,4 +36,4 @@ RUN yes | mamba env create -f /environment.yml && \
 # Change the default shell to use mamba run in the coastsat environment
 # SHELL ["mamba", "run", "-n", "coastsat", "/bin/bash", "-c"]
 
-ENTRYPOINT [ "mamba", "run", "-n", "coastsat", "runner"]
+ENTRYPOINT [ "mamba", "run", "-n", "coastsat", "cs_runner_initializer"]
