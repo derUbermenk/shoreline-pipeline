@@ -3,6 +3,13 @@
 Grabs images of coastlines in a particular location and outputs tide corrected shoreline intersects
 <img src="https://github.com/user-attachments/assets/04f68437-3ae0-42fd-88cb-85fa74b6b7ad" alt="image"/>
 
+
+<h3>Related Repositories</h3>
+<ul>
+  <li>Program for coastsat image: <a href="https://github.com/derUbermenk/CoastSat">derUbermenk/CoastSat</a></li>
+  <li>Program for parse intersects image: <a href="https://github.com/derUbermenk/shoreline-intersect-parser">derUbermenk/shoreline-intersect-parser</a></li>
+</ul>
+
 <h3><i>Planned Features</i></h3>
 <ul>
   <li> Add task for refining shoreline intersect positions.
