@@ -4,7 +4,7 @@ ARG COASTSAT_BRANCH=master
 ENV REPO_ZIP=https://github.com/derUbermenk/CoastSat/archive/refs/heads/${COASTSAT_BRANCH}
 
 RUN apt-get update \
-    && apt-get install -y unzip \
+    && apt-get install -y vim\
     && rm -rf /var/lib/apt/lists/*
 
 SHELL [ "/bin/bash", "-c" ]
