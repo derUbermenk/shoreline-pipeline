@@ -6,9 +6,9 @@ Grabs images of coastlines in a particular location and outputs tide corrected s
 
 <h3>Related Repositories</h3>
 <ul>
-  <li>Program for grabtide image: <a href="https://github.com/derUbermenk/grabtide">derUbermenk/grabtide</a></li>
-  <li>Program for coastsat image: <a href="https://github.com/derUbermenk/CoastSat">derUbermenk/CoastSat</a></li>
-  <li>Program for parse intersects image: <a href="https://github.com/derUbermenk/shoreline-intersect-parser">derUbermenk/shoreline-intersect-parser</a></li>
+  <li>script for grabtide image: <a href="https://github.com/derUbermenk/grabtide">derUbermenk/grabtide</a></li>
+  <li>script for coastsat image: <a href="https://github.com/derUbermenk/CoastSat">derUbermenk/CoastSat</a></li>
+  <li>script for parse intersects image: <a href="https://github.com/derUbermenk/shoreline-intersect-parser">derUbermenk/shoreline-intersect-parser</a></li>
 </ul>
 
 <h3><i>Planned Features</i></h3>
