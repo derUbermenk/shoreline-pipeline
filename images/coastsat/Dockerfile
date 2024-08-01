@@ -5,6 +5,7 @@ ENV REPO_ZIP=https://github.com/derUbermenk/CoastSat/archive/refs/heads/${COASTS
 
 RUN apt-get update \
     && apt-get install -y vim\
+    && apt-get install -y curl\
     && rm -rf /var/lib/apt/lists/*
 
 SHELL [ "/bin/bash", "-c" ]
