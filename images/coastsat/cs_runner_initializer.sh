@@ -30,7 +30,7 @@ branch=${10}
 link=https://api.github.com/repos/derUbermenk/$reponame/tarball/$branch
 echo $link
 
-wget -O /runner.tar $link
+curl -Lo /runner.tar $link 
 
 mkdir /_runner
 mkdir /runner
