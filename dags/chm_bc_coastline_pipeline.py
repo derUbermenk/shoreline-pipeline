@@ -43,7 +43,7 @@ coastsat = DockerOperator(
         "/input/transects.geojson",
         "/tides/{{ds_nodash}}_{{next_ds_nodash}}_tides.csv",
         "/input/ref_shoreline.pkl",
-        "dev/update-save-path-handling"
+        "master"
     ],
     environment={
         'SERVICE_ACCOUNT_EMAIL': 'sat-img-dl@satimagedownloader.iam.gserviceaccount.com'
@@ -67,7 +67,7 @@ parse_intersects = DockerOperator(
         "/input/transects.geojson",
         "/intersects/{{ds}}_{{next_ds}}_data.csv",
         "/segments/{{ds}}_{{next_ds}}_segments.geojson",
-        "dev/create-parser"
+        "main"
     ],
     volumes = [
         "/home/admini/Documents/shoreline-pipeline/data/chesterman_bc_9440083/input:/input",
