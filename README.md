@@ -13,6 +13,15 @@ Grabs images of coastlines in a particular location and outputs tide corrected s
 
 <h3><i>Planned Features</i></h3>
 <ul>
+  <li>Add database for storage
+  <p> At present, data are stored in files such as .pkl, .geojson, and .csv. Implementing this feature will allow the pipeline to store data in a single location, with definite relationship definitions </p>
+    <img src="https://github.com/user-attachments/assets/7602bb1b-b852-49dc-a6e3-6f7ee8bec212"  style="width: 60%; height: 60%;" />
+  
+  </li>
+</ul>
+
+<h3><i>Planned Features</i></h3>
+<ul>
   <li> Add task for refining shoreline intersect positions.
   <p>See <a href="https://github.com/derUbermenk/undergraduate-thesis#:~:text=Smoothen%20detected%20shoreline%20traces">smoothing shorelines</a> at derUbermenk/undergraduate-thesis </p>
     <img src="https://github.com/user-attachments/assets/10910468-96bc-447b-a4ad-73818aebbf2b"  style="width: 40%; height: 40%;" />
