@@ -11,7 +11,7 @@ Grabs images of coastlines in a particular location and outputs tide corrected s
   <li>script for parse intersects image: <a href="https://github.com/derUbermenk/shoreline-intersect-parser">derUbermenk/shoreline-intersect-parser</a></li>
 </ul>
 
-<h3><i>Planned Features</i></h3>
+<h3><i>In Progress</i></h3>
 <ul>
   <li>Add database for storage
   <p> At present, data are stored in files such as .pkl, .geojson, and .csv. Implementing this feature will allow the pipeline to store data in a single location, with definite relationship definitions </p>
@@ -22,12 +22,16 @@ Grabs images of coastlines in a particular location and outputs tide corrected s
 
 <h3><i>Planned Features</i></h3>
 <ul>
-  <li> Add task for refining shoreline intersect positions.
-  <p>See <a href="https://github.com/derUbermenk/undergraduate-thesis#:~:text=Smoothen%20detected%20shoreline%20traces">smoothing shorelines</a> at derUbermenk/undergraduate-thesis </p>
-    <img src="https://github.com/user-attachments/assets/10910468-96bc-447b-a4ad-73818aebbf2b"  style="width: 40%; height: 40%;" />
+  <li>
+    <p>Add functionality to relevant image scripts to load necessary data from database</p>
   </li>
   
   <li> Add task for computing shoreline change statistics. See <a href="https://github.com/derUbermenk/undergraduate-thesis#:~:text=CoastCR%20for%20calculating%20shoreline%20change%20statistics">computing statics</a> using <a href="https://github.com/alejandro-gomez/CoastCR">CoastCR</a>
+  </li>
+  
+  <li> Add task for refining shoreline intersect positions.
+  <p>See <a href="https://github.com/derUbermenk/undergraduate-thesis#:~:text=Smoothen%20detected%20shoreline%20traces">smoothing shorelines</a> at derUbermenk/undergraduate-thesis </p>
+    <img src="https://github.com/user-attachments/assets/10910468-96bc-447b-a4ad-73818aebbf2b"  style="width: 40%; height: 40%;" />
   </li>
 </ul>
 
