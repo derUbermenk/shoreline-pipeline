@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/b320410b-4e8c-46a1-9146-f18e663d007b)<h1>Shoreline Pipeline</h1>
+<h1>Shoreline Pipeline</h1>
 
 Grabs images of coastlines in a particular location and outputs tide corrected shoreline intersects
 <img src="https://github.com/user-attachments/assets/04f68437-3ae0-42fd-88cb-85fa74b6b7ad" alt="image"/>
