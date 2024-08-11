@@ -13,6 +13,18 @@ x-airflow-image: &airflow_image apache/airflow:2.9.0-python3.10
 # ====================================== /AIRFLOW ENVIRONMENT VARIABLES ======================================
 
 services:
+  shoreline_db:
+    image: postgres:13
+    environment:
+      - POSTGRES_USER=shoreline
+      - POSTGRES_PASSWORD=shoreline
+      - POSTGRES_DB=shoreline
+    ports:
+      - "5433:5433"
+    volumes:
+      - ./db/shoreline_db:/docker-entrypoint-initdb.d/
+      - ./data/shorelineDB:/var/lib/postgresql/data
+
   postgres:
     image: postgres:13
     environment:
