@@ -24,6 +24,16 @@ services:
     volumes:
       - ./db/shoreline_db:/docker-entrypoint-initdb.d/
       - ./data/shorelineDB:/var/lib/postgresql/data
+    
+  shoreline_pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@shoreline_pipeline.com 
+      PGADMIN_DEFAULT_PASSWORD: shoreline_pipeline 
+    ports:
+      - "80:80"
+    volumes:
+      - ./data/shorelineDB_pgadmin:/var/lib/pgadmin
 
   postgres:
     image: postgres:13
