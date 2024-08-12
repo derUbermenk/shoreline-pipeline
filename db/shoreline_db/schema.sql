@@ -1,0 +1,31 @@
+CREATE TABLE Shorelines (
+    id SERIAL PRIMARY KEY,
+    loc VARCHAR(50) NOT NULL,
+    baseline LINESTRING NOT NULL,
+    crs VARCHAR(50) NOT NULL DEFAULT 'EPSG:4326',
+    NSM DOUBLE PRECISION,
+    SCE DOUBLE PRECISION,
+    LRR DOUBLE PRECISION,
+    WLR DOUBLE PRECISION
+);
+
+CREATE TABLE Profiles (
+    id SERIAL PRIMARY KEY,
+    shoreline_id INT NOT NULL REFERENCES Shorelines(id) ON DELETE CASCADE,
+    record_date DATE NOT NULL,
+    geometry MULTILINESTRING,
+) 
+
+CREATE TABLE Transects (
+    id SERIAL PRIMARY KEY,
+    shoreline_id INT NOT NULL REFERENCES Shorelines(id) ON DELETE CASCADE,
+    geometry LINESTRING
+)
+
+CREATE TABLE Intersects (
+    id SERIAL PRIMARY KEY,
+    profile_id INT NOT NULL REFERENCES Profiles(id) ON DELETE CASCADE,
+    transect_id INT NOT NULL REFERENCES Transects(id) ON DELETE CASCADE,
+    distance DOUBLE PRECISION NOT NULL,
+    geometry POINT
+)
