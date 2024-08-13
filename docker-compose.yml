@@ -25,7 +25,7 @@ services:
       - ./db/shoreline_db:/docker-entrypoint-initdb.d/
       - ./data/shorelineDB:/var/lib/postgresql/data
     
-  shoreline_pgadmin:
+  pgadmin:
     image: dpage/pgadmin4
     depends_on:
       - shoreline_db
@@ -35,7 +35,7 @@ services:
     ports:
       - "80:80"
     volumes:
-      - ./data/shorelineDB_pgadmin:/var/lib/pgadmin
+      - ./data/pgadmin:/var/lib/pgadmin
 
   airflow_db:
     image: postgres:13
