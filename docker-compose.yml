@@ -55,6 +55,7 @@ services:
         AIRFLOW_BASE_IMAGE: *airflow_image
     image: shoreline-pipeline/airflow
     depends_on:
+      - shoreline_db
       - airflow_db 
     environment: *airflow_environment
     entrypoint: /bin/bash
