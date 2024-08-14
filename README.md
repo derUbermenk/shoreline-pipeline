@@ -15,7 +15,7 @@ Grabs images of coastlines in a particular location and outputs tide corrected s
 <ul>
   <li>Add database for storage
   <p> At present, data are stored in files such as .pkl, .geojson, and .csv. Implementing this feature will allow the pipeline to store data in a single location, with definite relationship definitions </p>
-    <img src="https://github.com/user-attachments/assets/7602bb1b-b852-49dc-a6e3-6f7ee8bec212"  style="width: 60%; height: 60%;" />
+    <img src="https://github.com/derUbermenk/shoreline-pipeline/blob/dev/add-shoreline-db/docs/images/data_model.drawio.png"  style="width: 60%; height: 60%;" />
   
   </li>
 </ul>
