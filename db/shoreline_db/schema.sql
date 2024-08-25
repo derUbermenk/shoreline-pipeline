@@ -1,14 +1,20 @@
 CREATE EXTENSION IF NOT EXISTS postgis;
 
 CREATE TABLE Shorelines (
-    id SERIAL PRIMARY KEY,
-    loc VARCHAR(50) NOT NULL,
-    baseline geometry(LINESTRING) NOT NULL,
-    crs VARCHAR(50) NOT NULL DEFAULT 'EPSG:4326',
+    sitename VARCHAR(20) PRIMARY KEY,
+    loc VARCHAR(50),
     NSM DOUBLE PRECISION,
     SCE DOUBLE PRECISION,
     LRR DOUBLE PRECISION,
-    WLR DOUBLE PRECISION
+    WLR DOUBLE PRECISION,
+    -- crs to use for calculating detected shoreline positions
+    --  also used as crs for baseline
+    output_epsg VARCHAR(50) NOT NULL DEFAULT 'EPSG:4326',
+    -- used as reference for determining shoreline. must use
+    --  output crs
+    baseline geometry(LINESTRING) NOT NULL,
+    -- uses EPSG:4326
+    area  geometry(POLYGON) NOT NULL
 );
 
 CREATE TABLE Profiles (
