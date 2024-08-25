@@ -38,7 +38,7 @@ mkdir /runner
 tar -xf /runner.tar -C /_runner
 ls /runner
 mv /_runner/*/CoastSat/* /runner
-cp /runner/coastSatRunner.py /runner/cs_runner
+cp /runner/coastSatRunner_DB.py /runner/cs_runner
 chmod +x /runner/cs_runner
 
 export PATH="/runner:$PATH"
