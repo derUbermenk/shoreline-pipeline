@@ -15,17 +15,14 @@ show_help() {
 # coastsat specific variables
 startDate=$1
 endDate=$2
-savePath=$3
-coordinates=$4
-sitename=$5
-epsg=$6
-transects=$7
-tides=$8
-ref_shoreline=$9
+sitename=$3
+epsg=$4
+tides=$5
+connstring=$6
 
 # runner variables
 reponame="CoastSat"
-branch=${10}
+branch=$7
 
 link=https://api.github.com/repos/derUbermenk/$reponame/tarball/$branch
 echo $link
