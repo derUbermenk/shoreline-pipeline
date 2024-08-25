@@ -18,22 +18,28 @@ CREATE TABLE Shorelines (
 );
 
 CREATE TABLE Profiles (
-    id SERIAL PRIMARY KEY,
-    shoreline_id INT NOT NULL REFERENCES Shorelines(id) ON DELETE CASCADE,
-    record_date DATE NOT NULL,
+    record_date DATE PRIMARY KEY,
+    shoreline_sitename VARCHAR(20) NOT NULL REFERENCES Shorelines(sitename) ON DELETE CASCADE,
+    satname VARCHAR(5),
+    geoaccuracy VARCHAR(10),
+    cloud_cover DOUBLE PRECISION,
     geom geometry(MULTILINESTRING)
 ); 
 
 CREATE TABLE Transects (
     id SERIAL PRIMARY KEY,
-    shoreline_id INT NOT NULL REFERENCES Shorelines(id) ON DELETE CASCADE,
-    geom geometry(LINESTRING)
+    transect_name VARCHAR(5) NOT NULL,
+    shoreline_sitename VARCHAR(20) NOT NULL REFERENCES Shorelines(sitename) ON DELETE CASCADE,
+    geom geometry(LINESTRING),
+    CONSTRAINT unique_transect_shoreline UNIQUE(transect_name, shoreline_sitename)
 );
 
 CREATE TABLE Intersects (
-    id SERIAL PRIMARY KEY,
-    profile_id INT NOT NULL REFERENCES Profiles(id) ON DELETE CASCADE,
+    id INT,
+    profile_record_date DATE NOT NULL REFERENCES Profiles(record_date) ON DELETE CASCADE,
     transect_id INT NOT NULL REFERENCES Transects(id) ON DELETE CASCADE,
     distance DOUBLE PRECISION NOT NULL,
-    geom geometry(POINT)
+    geom geometry(POINT),
+
+    CONSTRAINT unique_id_transect_shoreline UNIQUE(id, profile_record_date, transect_id)
 );
