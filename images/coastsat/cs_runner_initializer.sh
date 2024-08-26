@@ -40,5 +40,10 @@ chmod +x /runner/cs_runner
 
 export PATH="/runner:$PATH"
 
-cs_runner $startDate $endDate $savePath $coordinates $sitename \
-    $epsg $transects $tides $ref_shoreline
+cs_runner $startDate \
+  $endDate \
+  $sitename \
+  $epsg \
+  $tides \
+  $connstring
+
