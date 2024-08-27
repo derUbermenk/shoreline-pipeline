@@ -7,7 +7,8 @@ sitename="CHESTERMAN"
 epsg="3005"
 tides="/run_data/tides/20240601_20240701_tides.csv"
 connstring="postgresql://shoreline:shoreline@shoreline_db:5432/shoreline"
-branch="dev/add-sql-support"
+# branch="dev/add-sql-support"
+branch="debug/dev/add-sql-support"
 
 docker run -it \
     -v $test_run_data:/run_data \
