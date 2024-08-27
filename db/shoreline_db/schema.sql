@@ -38,7 +38,7 @@ CREATE TABLE Intersects (
     id INT,
     profile_record_date DATE NOT NULL REFERENCES Profiles(record_date) ON DELETE CASCADE,
     transect_id INT NOT NULL REFERENCES Transects(id) ON DELETE CASCADE,
-    distance DOUBLE PRECISION NOT NULL,
+    distance DOUBLE PRECISION,
     geom geometry(POINT),
 
     CONSTRAINT unique_id_transect_shoreline UNIQUE(id, profile_record_date, transect_id)
