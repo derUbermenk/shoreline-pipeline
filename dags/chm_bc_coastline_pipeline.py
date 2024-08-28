@@ -37,26 +37,18 @@ coastsat = DockerOperator(
     command = [
         "{{ds}}",
         "{{next_ds}}",
-        "/intersects/{{ds}}_{{next_ds}}_data.csv",
-        "[[-125.895220405324,49.1237726477147],[-125.88841138016,49.1127817966321],[-125.899425059767,49.1098655680256],[-125.906924940215,49.1205546121385],[-125.895220405324,49.1237726477147]]",
-        "CHESTERMANN",
+        "CHESTERMANN"
         "3005",
-        "/input/transects.geojson",
         "/tides/{{ds_nodash}}_{{next_ds_nodash}}_tides.csv",
-        "/input/ref_shoreline.pkl",
-        "master"
+        "postgresql://shoreline:shoreline@shoreline_db:5432/shoreline",
+        "dev/add-sql-support"
     ],
+    network_mode="shoreline-pipeline_default",
     environment={
         'SERVICE_ACCOUNT_EMAIL': 'sat-img-dl@satimagedownloader.iam.gserviceaccount.com'
     },
-    # mounts = [
-    #     Mount(source="/home/admini/Documents/shoreline-pipeline/data/9440083/input", target="/input", type="bind"),
-    #     Mount(source="/home/admini/Documents/shoreline-pipeline/data/9440083/output", target="/output", type="bind"),
-    # ]
     volumes = [
-    "/home/admini/Documents/shoreline-pipeline/data/chesterman_bc_9440083/input:/input",
-    "/home/admini/Documents/shoreline-pipeline/data/chesterman_bc_9440083/tides:/tides",
-    "/home/admini/Documents/shoreline-pipeline/data/chesterman_bc_9440083/intersects:/intersects"
+    "/home/admini/Documents/shoreline-pipeline/data/chesterman_bc_9440083/tides:/tides"
     ]
 )
 
