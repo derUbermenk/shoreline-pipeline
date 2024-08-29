@@ -69,4 +69,4 @@ parse_intersects = DockerOperator(
     ] 
 )
 
-grabtide >> coastsat >> parse_intersects
+grabtide >> coastsat # >> parse_intersects
