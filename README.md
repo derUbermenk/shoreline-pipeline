@@ -27,11 +27,7 @@ Scheduled downloading of coastline images in a particular location and outputs t
 </ul>
 
 <h3><i>Planned Features</i></h3>
-<ul>
-  <li>
-    <p>Add functionality to relevant image scripts to load necessary data from database</p>
-  </li>
-  
+<ul>  
   <li> Add task for computing shoreline change statistics. See <a href="https://github.com/derUbermenk/undergraduate-thesis#:~:text=CoastCR%20for%20calculating%20shoreline%20change%20statistics">computing statics</a> using <a href="https://github.com/alejandro-gomez/CoastCR">CoastCR</a>
   </li>
   
