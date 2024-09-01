@@ -9,7 +9,7 @@ Grabs images of coastlines in a particular location and outputs tide corrected s
 
 <h3>ERD</h3>
 <p>
-
+<img src="https://github.com/derUbermenk/shoreline-pipeline/blob/dev/add-shoreline-db/docs/images/data_model.drawio.png" alt="image" style="width: 60%; height: 60%;"/>
 </p>
 
 ---
