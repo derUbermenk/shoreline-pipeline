@@ -1,5 +1,7 @@
 .shoreline-pipeline
+images/coastsat/test_run_data/
 data/airflowDB/
+data/pgadmin/
 data/*/input
 data/*/output
 data/chesterman_bc_9440083/*
