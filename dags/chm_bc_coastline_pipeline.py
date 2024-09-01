@@ -37,11 +37,11 @@ coastsat = DockerOperator(
     command = [
         "{{ds}}",
         "{{next_ds}}",
-        "CHESTERMANN"
+        "CHESTERMANN",
         "3005",
         "/tides/{{ds_nodash}}_{{next_ds_nodash}}_tides.csv",
         "postgresql://shoreline:shoreline@shoreline_db:5432/shoreline",
-        "dev/add-sql-support"
+        "master"
     ],
     network_mode="shoreline-pipeline_default",
     environment={
