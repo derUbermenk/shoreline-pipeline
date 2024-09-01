@@ -2,7 +2,7 @@
 
 Grabs images of coastlines in a particular location and outputs tide corrected shoreline intersects
 <p>
-  <img src="https://github.com/derUbermenk/shoreline-pipeline/blob/dev/add-shoreline-db/docs/images/Shoreline-PipelineDiagram.drawio.png" alt="image" style="width: 60%; height: 60%;"/>
+  <img src="https://github.com/derUbermenk/shoreline-pipeline/blob/dev/add-shoreline-db/docs/images/Shoreline-PipelineDiagram.drawio.png?" alt="image" style="width: 60%; height: 60%;"/>
 </p>
 
 ---
