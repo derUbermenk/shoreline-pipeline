@@ -1,8 +1,18 @@
 <h1>Shoreline Pipeline</h1>
 
 Grabs images of coastlines in a particular location and outputs tide corrected shoreline intersects
-<img src="https://github.com/derUbermenk/shoreline-pipeline/blob/dev/add-shoreline-db/docs/images/Shoreline-PipelineDiagram.drawio.png" alt="image" style="width: 60%; height: 60%;"/>
+<p>
+  <img src="https://github.com/derUbermenk/shoreline-pipeline/blob/dev/add-shoreline-db/docs/images/Shoreline-PipelineDiagram.drawio.png" alt="image" style="width: 60%; height: 60%;"/>
+</p>
 
+---
+
+<h3>ERD</h3>
+<p>
+ <img src="https://github.com/derUbermenk/shoreline-pipeline/blob/dev/add-shoreline-db/docs/images/data_model.drawio.png" alt="image" style="width: 60%; height: 60%;" 
+</p>
+
+---
 
 <h3>Related Repositories</h3>
 <ul>
@@ -13,10 +23,7 @@ Grabs images of coastlines in a particular location and outputs tide corrected s
 
 <h3><i>In Progress</i></h3>
 <ul>
-  <li>Add database for storage
-  <p> At present, data are stored in files such as .pkl, .geojson, and .csv. Implementing this feature will allow the pipeline to store data in a single location, with definite relationship definitions </p>
-    <img src="https://github.com/derUbermenk/shoreline-pipeline/blob/dev/add-shoreline-db/docs/images/data_model.drawio.png"  style="width: 80%; height: 80%;" />
-  </li>
+  <li></li>
 </ul>
 
 <h3><i>Planned Features</i></h3>
@@ -44,6 +51,8 @@ Grabs images of coastlines in a particular location and outputs tide corrected s
       <img src="https://github.com/user-attachments/assets/9cd59fe1-a54d-4f5f-a54a-eb49ca588c61" alt="image"  style="width: 40%; height: 40%;" />
     <p>Implementation now uses shapely instead of the originally planned in-qgis transformation. Writing a new implementation was more straightforward than refactoring the sphagetti that was my old code</p>
     </li>
+      <li>Add database support for data storage
+  </li>
   </ul>
 
 <h3> This project utilizes the following resources </h3>
