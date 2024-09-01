@@ -1,7 +1,7 @@
 <h1>Shoreline Pipeline</h1>
 
 Grabs images of coastlines in a particular location and outputs tide corrected shoreline intersects
-<img src="https://github.com/user-attachments/assets/04f68437-3ae0-42fd-88cb-85fa74b6b7ad" alt="image"/>
+<img src="https://github.com/derUbermenk/shoreline-pipeline/blob/dev/add-shoreline-db/docs/images/Shoreline-PipelineDiagram.drawio.png" alt="image" style="width: 60%; height: 60%;"/>
 
 
 <h3>Related Repositories</h3>
@@ -15,7 +15,7 @@ Grabs images of coastlines in a particular location and outputs tide corrected s
 <ul>
   <li>Add database for storage
   <p> At present, data are stored in files such as .pkl, .geojson, and .csv. Implementing this feature will allow the pipeline to store data in a single location, with definite relationship definitions </p>
-    <img src="https://github.com/derUbermenk/shoreline-pipeline/blob/dev/add-shoreline-db/docs/images/data_model.drawio.png"  style="width: 60%; height: 60%;" />
+    <img src="https://github.com/derUbermenk/shoreline-pipeline/blob/dev/add-shoreline-db/docs/images/data_model.drawio.png"  style="width: 80%; height: 80%;" />
   </li>
 </ul>
 
