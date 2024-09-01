@@ -1,6 +1,6 @@
 <h1>Shoreline Pipeline</h1>
 
-Grabs images of coastlines in a particular location and outputs tide corrected shoreline intersects
+Scheduled downloading of coastline images in a particular location and outputs tide corrected shoreline intersects
 <p>
   <img src="docs/images/Shoreline-PipelineDiagram.drawio.png?" alt="image" style="width: 60%; height: 60%;"/>
 </p>
