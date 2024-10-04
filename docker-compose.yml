@@ -13,29 +13,29 @@ x-airflow-image: &airflow_image apache/airflow:2.9.0-python3.10
 # ====================================== /AIRFLOW ENVIRONMENT VARIABLES ======================================
 
 services:
-  shoreline_db:
-    image: postgis/postgis:13-3.4
-    environment:
-      - POSTGRES_USER=shoreline
-      - POSTGRES_PASSWORD=shoreline
-      - POSTGRES_DB=shoreline
-    ports:
-      - "5433:5432"
-    volumes:
-      - ./db/shoreline_db:/docker-entrypoint-initdb.d/
-      - ./data/shorelineDB:/var/lib/postgresql/data
+  # shoreline_db:
+  #   image: postgis/postgis:13-3.4
+  #   environment:
+  #     - POSTGRES_USER=shoreline
+  #     - POSTGRES_PASSWORD=shoreline
+  #     - POSTGRES_DB=shoreline
+  #   ports:
+  #     - "5433:5432"
+  #   volumes:
+  #     - ./db/shoreline_db:/docker-entrypoint-initdb.d/
+  #     - ./data/shorelineDB:/var/lib/postgresql/data
     
-  pgadmin:
-    image: dpage/pgadmin4
-    depends_on:
-      - shoreline_db
-    environment:
-      PGADMIN_DEFAULT_EMAIL: admin@shoreline.com 
-      PGADMIN_DEFAULT_PASSWORD: admin 
-    ports:
-      - "80:80"
-    volumes:
-      - ./data/pgadmin:/var/lib/pgadmin
+  # pgadmin:
+  #   image: dpage/pgadmin4
+  #   depends_on:
+  #     - shoreline_db
+  #   environment:
+  #     PGADMIN_DEFAULT_EMAIL: admin@shoreline.com 
+  #     PGADMIN_DEFAULT_PASSWORD: admin 
+  #   ports:
+  #     - "80:80"
+  #   volumes:
+  #     - ./data/pgadmin:/var/lib/pgadmin
 
   airflow_db:
     image: postgres:13
@@ -55,7 +55,7 @@ services:
         AIRFLOW_BASE_IMAGE: *airflow_image
     image: shoreline-pipeline/airflow
     depends_on:
-      - shoreline_db
+      # - shoreline_db
       - airflow_db 
     environment: *airflow_environment
     entrypoint: /bin/bash
