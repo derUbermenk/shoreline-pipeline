@@ -1,3 +1,5 @@
+terraform/.terraform
+terraform/.terraform.lock.hcl
 .shoreline-pipeline
 images/coastsat/test_run_data/
 data/airflowDB/
