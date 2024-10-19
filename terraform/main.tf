@@ -99,3 +99,28 @@ resource "aws_s3_bucket" "shoreline_bucket" {
     Environment = var.dev_resource_environment
   }
 }
+
+resource "aws_cloudwatch_dashboard" "main" {
+  dashboard_name = "my-dashboard"
+  dashboard_body = jsonencode({
+    widgets = [
+      {
+        type   = "metric"
+        x      = 0
+        y      = 0
+        width  = 12
+        height = 6
+
+        properties = {
+          metrics = [
+            ["AWS/EC2", "CPUUtilization", "InstanceId", "${aws_instance.airflow_server.id}"]
+          ]
+          period = 300
+          stat   = "Average"
+          region = "us-east-2"
+          title  = "EC2 Instance CPU"
+        }
+      },
+    ]
+  })
+}
