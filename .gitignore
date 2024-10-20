@@ -1,5 +1,6 @@
-terraform/terraform.tfstate*
-terraform/.terraform
+terraform.tfstate
+terraform.tfstate.backup
+.terraform/
 terraform/.terraform.lock.hcl
 .shoreline-pipeline
 images/coastsat/test_run_data/
