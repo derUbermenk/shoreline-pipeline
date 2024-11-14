@@ -1,6 +1,6 @@
 variable "allowed_ingress_ips" {
   type    = list(string)
-  default = [ "175.176.66.194/32" ]
+  default = [ "103.104.17.0/32" ]
 }
 
 variable "dev_resource_environment" {

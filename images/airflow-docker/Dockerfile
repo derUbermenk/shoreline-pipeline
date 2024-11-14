@@ -1,9 +1,10 @@
 ARG AIRFLOW_BASE_IMAGE="apache/airflow:2.9.0-python3.10"
 FROM ${AIRFLOW_BASE_IMAGE}
 
-# COPY .requirements.txt /requirements.txt
+COPY .requirements.txt /requirements.txt
 # RUN pip install -r /requirements.txt
 RUN pip install --no-cache-dir apache-airflow-providers-docker==3.12.2 
+RUN pip install  --no-cache-dir 'apache-airflow[amazon]'
 
 
 # Note we need to run Airflow as root in this case, as Airflow needs to

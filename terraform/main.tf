@@ -19,6 +19,17 @@ resource "aws_subnet" "shoreline_public_subnet" {
   }
 }
 
+resource "aws_subnet" "shoreline_ecs_subnet" {
+  vpc_id                  = aws_vpc.shoreline_vpc.id
+  cidr_block              = "10.123.2.0/24"
+  map_public_ip_on_launch = true
+  availability_zone       = "us-west-2a"
+
+  tags = {
+    Name = "shoreline-dev-public_subnet"
+  }
+}
+
 resource "aws_internet_gateway" "shoreline_internet_gateway" {
   vpc_id = aws_vpc.shoreline_vpc.id 
 
@@ -48,6 +59,11 @@ resource "aws_route_table_association" "shoreline_public_route_table_assoc" {
   route_table_id = aws_route_table.shoreline_public_route_table.id
 }
 
+resource "aws_route_table_association" "shoreline_ecs_route_table_assoc" {
+  subnet_id      = aws_subnet.shoreline_ecs_subnet.id
+  route_table_id = aws_route_table.shoreline_public_route_table.id
+}
+
 resource "aws_security_group" "shoreline_public_sg" {
   name        = "dev_sg"
   description = "dev security group"
@@ -57,7 +73,7 @@ resource "aws_security_group" "shoreline_public_sg" {
     from_port   = 0
     to_port     = 0
     protocol    = "-1"
-    cidr_blocks = var.allowed_ingress_ips
+    cidr_blocks = ["103.104.17.0/32"] # var.allowed_ingress_ips
   }
 
   egress {
@@ -88,6 +104,10 @@ resource "aws_instance" "airflow_server" {
   tags = {
     Name = "shoreline-dev-airflow-server"
     Environment = var.dev_resource_environment
+  }
+
+  lifecycle {
+    ignore_changes = all # Ignore all changes for this resource
   }
 }
 
@@ -125,11 +145,11 @@ resource "aws_cloudwatch_dashboard" "main" {
   })
 }
 
-resource "aws_ecr_repository" "shoreline-image-repo" {
-  name                 = "shoreline-image-repo"
-  image_tag_mutability = "MUTABLE"
-
-  image_scanning_configuration {
-    scan_on_push = true
-  }
-}
+# resource "aws_ecr_repository" "shoreline-image-repo" {
+#   name                 = "shoreline-image-repo"
+#   image_tag_mutability = "MUTABLE"
+# 
+#   image_scanning_configuration {
+#     scan_on_push = true
+#   }
+# }
